@@ -1,10 +1,118 @@
-.App {
+.App{
   text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/003/759/371/large/jakub-grygier-img-57032395950410.jpg?1477203101");
+  background-size: cover;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color:#BA4A00;
+  background-color: #FBEEE6;
+}
+
+
+.home{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.play{
+  background-color: #FBEEE6;
+}
+
+.link{
+  margin: 5vmin;
+  color:#BA4A00;
+  font-size: 20px;
+}
+
+.pictures{
+  display: flex;
+  flex-grow: 100;
+  align-content: center;
+  align-items: stretch;
+  width: auto;
+  height: auto;
+  justify-content: center;
+}
+
+.left-picture{
+  display: flex;
+  width: auto;
+  position: relative;
+  margin: 50px;
+  align-items: stretch;
+}
+
+.right-picture{
+  display: flex;
+  position: relative;
+  width: auto;
+  margin: 50px;
+}
+
+.image{
+  margin: 1vmin;
+  border-radius: 10%;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  justify-content: center;
+}
+
+.left-picture:hover .image {
+  opacity: 0.25;
+}
+
+.left-picture:hover .middle {
+  opacity: 1;
+}
+
+.right-picture:hover .image {
+  opacity: 0.25;
+}
+
+.right-picture:hover .middle {
+  opacity: 1;
+}
+.text {
+ color: #BA4A00;
+ font-size: 16px;
+ padding: 16px 32px;
+
+}
+
+#creator-link{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color:#BA4A00;
+  background-color: #FBEEE6;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,14 +122,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #FBEEE6;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:#BA4A00;
 }
 
 .App-link {
