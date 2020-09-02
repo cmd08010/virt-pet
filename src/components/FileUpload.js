@@ -1,35 +1,42 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const FileUpload = ({ auth, setAuth }) => {
+const FileUpload = () => {
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState('');
+  const [petName, setPetName] = useState('')
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
   };
 
+  const addName = (e) => {
+    setPetName(e.target.value)
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    console.log(file, "the file on submit", petName)
     formData.append('file', file);
+    formData.append('name', petName)
     try {
-      const res = await axios.post('/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const res = await axios.post('/upload', formData
+      );
+      console.log(res)
       const { url, original_filename } = res.data.result;
+
       setUploadedFile({ url, original_filename });
       setMessage('File Uploaded');
       setFileName('Choose file');
-      const updatedAuth = { ...auth, avatar: url };
-      axios.put(`/api/users/${auth.id}`, updatedAuth).then((res) => {
-        setAuth(res.data);
+      const newPet = { name: petName, image: "hi" };
+      axios.post('/api/pets', newPet).then((res) => {
+        console.log(res);
       });
+
     } catch (err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
@@ -37,13 +44,13 @@ const FileUpload = ({ auth, setAuth }) => {
         setMessage(err.response.data.msg);
       }
     }
-  };
+  }
 
   return (
     <Fragment>
       {uploadedFile ? (
         <div id="uploadedFile">
-          <img src={uploadedFile.url} className="userProfileImage" />
+          <img src={uploadedFile.url} className="userProfileImage" alt="avatar" />
         </div>
       ) : null}
       {message ? (
@@ -64,6 +71,7 @@ const FileUpload = ({ auth, setAuth }) => {
       ) : null}
       <form onSubmit={onSubmit} className="fileUpload">
         <div className="custom-file">
+          <input type="text" onChange={addName}></input>
           <input
             type="file"
             className="custom-file-input"

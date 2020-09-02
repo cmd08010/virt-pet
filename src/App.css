@@ -1,9 +1,13 @@
+html{
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/003/759/371/large/jakub-grygier-img-57032395950410.jpg?1477203101");
+  background-size: cover;
+}
+
 .App{
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
-  background-image: url("https://cdnb.artstation.com/p/assets/images/images/003/759/371/large/jakub-grygier-img-57032395950410.jpg?1477203101");
-  background-size: cover;
   height: 100%;
+  width: 100%;
 }
 
 .nav-bar-links {
@@ -16,6 +20,27 @@
   background-color: #FBEEE6;
 }
 
+#imageUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+#imageUploadForm {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  text-align: center;
+}
+.userProfileImage {
+  border: 1px solid grey;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
 
 .home{
   display: flex;
@@ -37,6 +62,7 @@
 
 .pictures{
   display: flex;
+  flex-direction: row;
   flex-grow: 100;
   align-content: center;
   align-items: stretch;
@@ -45,15 +71,15 @@
   justify-content: center;
 }
 
-.left-picture{
+/* .left-picture{
   display: flex;
   width: auto;
   position: relative;
   margin: 50px;
   align-items: stretch;
-}
+} */
 
-.right-picture{
+.picture{
   display: flex;
   position: relative;
   width: auto;
@@ -83,27 +109,79 @@
   justify-content: center;
 }
 
-.left-picture:hover .image {
+.picture:hover .image {
   opacity: 0.25;
 }
 
-.left-picture:hover .middle {
+.picture:hover .middle {
   opacity: 1;
 }
 
-.right-picture:hover .image {
-  opacity: 0.25;
-}
-
-.right-picture:hover .middle {
-  opacity: 1;
-}
 .text {
  color: #BA4A00;
  font-size: 16px;
  padding: 16px 32px;
 
 }
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:7px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.meter {
+	height: 10rem;  /* Can be anything */
+	position: relative;
+	background: #555;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 25px;
+	padding: 10px;
+  box-shadow: inset 0 -2px -20px rgba(255,255,255,0.3);
+  width: 20px;
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(79, 132, 245);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43,194,83) 37%,
+    rgb(84,240,84) 69%
+  );
+  box-shadow:
+    inset 0 2px 9px  rgba(255,255,255,0.3),
+    inset 0 -2px 6px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+
 
 #creator-link{
   display: flex;

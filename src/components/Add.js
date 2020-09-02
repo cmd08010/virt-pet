@@ -1,31 +1,25 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import FileUpload from './FileUpload';
+import axios from 'axios';
 
-const Add = ({ auth, setAuth }) => {
+const Add = () => {
 
+  // axios.post("/api/pets", [])
+  //   .then()
 
   return (
     <div className="App">
 
-      <div
-        id='imageUploadForm'
-        action='upload.php'
-        method='post'
-        encType='multipart/form-data'>
-        <h5>
-          <h5 className="text-center mb-4">
-            <b>Upload Profile Photo</b>
-          </h5>
+      <b>Add a Dog Picture</b>
 
-          <FileUpload auth={auth} setAuth={setAuth} />
-          <hr className="hr" />
+      <h5>
 
-          <b>Add a Dog Picture</b>
-        </h5>
-        <input type='file' name='imageToUpload' id='imageToUpload' />
-        <input type='submit' value='Upload' name='submitImage' />
-      </div>
+        <FileUpload />
+        <hr className="hr" />
+
+      </h5>
+
     </div>
   );
 }

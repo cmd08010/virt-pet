@@ -6,10 +6,35 @@ import Gallery from './components/Gallery'
 import About from './components/About'
 import Play from './components/Play'
 import './App.css';
+import axios from "axios"
+import { createStore } from "redux"
+import { create } from 'lodash';
 
 function App() {
 
+  const store = createStore(() => { })
+
+  const [pets, setPets] = useState([])
+  const [users, setUsers] = useState([])
+  const [nameclass, setNameclass] = useState('')
+  const [params, setParams] = useState('')
+  const [petImage, setPetImage] = useState('')
   const [pet, setPet] = useState([])
+
+  useEffect(() => {
+
+    axios.get('/api/pets')
+      .then(response => {
+        setPets(response.data)
+        return response.data
+      })
+      .then(results => console.log(results, "useeffect in app"))
+    // .then((results) => {
+    //   setPets(results[0])
+    //   setUsers(results[1])
+    // })
+  }, [params])
+
 
   return (
     <div className="App">
@@ -37,7 +62,9 @@ function App() {
             <Route path="/" exact={true}>
               <Home
                 pet={pet}
-                setPet={setPet} />
+                setPet={setPet}
+                pets={pets}
+              />
             </Route>
           </Switch>
           <Switch>
@@ -47,7 +74,9 @@ function App() {
           </Switch>
           <Switch>
             <Route path="/gallery">
-              <Gallery />
+              <Gallery
+                pet={pet}
+                setPet={setPet} />
             </Route>
           </Switch>
           <Switch>
@@ -65,16 +94,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-      <div id="creator-link">
-        <a
-          className="App-link"
-          href="https://colleendunion.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Visit the creator
-      </a>
-      </div>
+
     </div >
   );
 }
