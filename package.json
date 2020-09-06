@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-server": "cross-env NODE_ENV=development nodemon server.js --watch server/",
-    "start": "concurrently \"npm run start-server\" \"react-scripts start\" --kill-others"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "14.4.0"
   }
 }
