@@ -24,8 +24,11 @@ const FileUpload = () => {
     formData.append('file', file);
     formData.append('name', petName)
     try {
-      const res = await axios.post('/upload', formData
-      );
+      const res = await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log(res)
       const { url, original_filename } = res.data.result;
 

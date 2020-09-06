@@ -5,7 +5,6 @@ html{
 
 .App{
   text-align: center;
-  font-family: 'Cormorant Garamond', serif;
   height: 100%;
   width: 100%;
 }
@@ -16,16 +15,38 @@ html{
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  height: 10%;
   color:#BA4A00;
-  background-color: #FBEEE6;
+  background-color: rgba(121, 185, 245, 0.753);
 }
 
+/*To upload new pics */
 #imageUpload {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.fileUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#uploadedFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.custom-file-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 80px;
+}
 
 
 #imageUploadForm {
@@ -48,6 +69,7 @@ html{
   height: 100vh;
   align-items: center;
   justify-content: center;
+  background-image: url("https://cdnb.artstation.com/p/assets/images/images/003/759/371/large/jakub-grygier-img-57032395950410.jpg?1477203101");
 }
 
 .play{
@@ -55,11 +77,13 @@ html{
 }
 
 .link{
-  margin: 5vmin;
+  margin: 3vmin;
   color:#BA4A00;
   font-size: 20px;
 }
 
+
+/* Home page pictures and hover effecr  */
 .pictures{
   display: flex;
   flex-direction: row;

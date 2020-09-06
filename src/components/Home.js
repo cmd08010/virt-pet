@@ -31,7 +31,7 @@ const Home = ({ pet, setPet, pets }) => {
         {pets.map((dog => {
           console.log(dog)
           return (
-            <div className="pictures" key={dog.id}>
+            <div className="picture" key={dog.id}>
 
               <Link to="/play" onClick={() => setPet(dog.id)}>
                 <img src={dog.image} alt="Avatar" className="image" ></img>

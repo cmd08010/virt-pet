@@ -31,7 +31,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 });
-// app.post("/api/pets", (req, res, next) => { })
+
 
 app.get("/", (req, res, next) => {
 
@@ -54,17 +54,17 @@ app.get("/api/pets/:id", (req, res, next) => {
 ///***Post***** */
 
 app.post('/upload', (req, res) => {
-  console.log(req, "upload check in server")
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
   const file = req.files.file;
   console.log(file, "file in server", file.tempFilePath)
-  //   cloudinary.uploader.upload(file.tempFilePath, function (err, result) {
-  //     res.send({ success: true, result });
-  //   });
-  // });
-})
+  cloudinary.uploader.upload(file.tempFilePath, { public_id: "sample" }, function (err, result) {
+    console.log(result, err)
+    res.send({ success: true, result });
+  });
+});
+
 
 app.post("/api/pets", (req, res, next) => {
   console.log(req.body, "pet stuff for new pet server")

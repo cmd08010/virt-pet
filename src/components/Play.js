@@ -44,7 +44,7 @@ const Play = ({ pet, setPet }) => {
   if (!playPet) {
 
     return (
-      <div className="play">
+      <div classNameName="play">
         <h1>Select a pet to play</h1>
       </div>
 
@@ -54,33 +54,57 @@ const Play = ({ pet, setPet }) => {
     return (
       //include pet description and name
 
-      <div className="play">
+      <div classNameName="play">
         <h1>
           {playPet.name}
         </h1>
-        <div className="pictures">
+        <div classNameName="pictures">
 
           <img src={playPet.image}></img>
         </div>
   This is the play component
-        <div className="buttons">
+        <div classNameName="buttons">
           <meter id="meter_love">
           </meter>
           <span></span>
 
-          <button className="myButton" onClick={() => playTime()}>Play</button>
-          <meter id="meter_play">
-          </meter>
+          <button classNameName="myButton" onClick={() => playTime()}>Play</button>
+          <div className="progress">
+            <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{ width: 1000 }} >
+              <span className="sr-only">60% Complete</span>
+            </div>
+          </div>
           <span></span>
-          <button className="myButton" onClick={() => feed()}> Feed</button>
+          <button classNameName="myButton" onClick={() => feed()}> Feed</button>
           <meter id="meter_love">
           </meter>
           <span></span>
-          <button className="myButton" onClick={() => nap()}> Nap</button>
+          <button classNameName="myButton" onClick={() => nap()}> Nap</button>
           <meter id="meter_love">
           </meter>
           <span></span>
-          <button className="myButton" onClick={() => love()}> Give love</button>
+          <button classNameName="myButton" onClick={() => love()}> Give love</button>
+
+          <div className="progress">
+            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style={{ width: 40 }}>
+              <span className="sr-only">40% Complete (success)</span>
+            </div>
+          </div>
+          <div className="progress">
+            <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{ width: 20 }}>
+              <span className="sr-only">20% Complete</span>
+            </div>
+          </div>
+          <div className="progress">
+            <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{ width: 60 }}>
+              <span className="sr-only">60% Complete (warning)</span>
+            </div>
+          </div>
+          <div className="progress">
+            <div className="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: 100 }}>
+              <span className="sr-only">80% Complete (danger)</span>
+            </div>
+          </div>
 
         </div>
       </div >
