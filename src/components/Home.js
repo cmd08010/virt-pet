@@ -23,12 +23,13 @@ const Home = ({ pet, setPet, pets }) => {
 
   return (
     <div className="home">
-      <p>
 
-      </p>
+      <h2>Welcome to your virtual pet! Have fun playing with, feeding, giving love, and letting your new pet name!
+        Select a pet to get started!</h2>
+
       <div className="pictures">
 
-        {pets.map((dog => {
+        {pets.slice(0, 2).map((dog => {
           console.log(dog)
           return (
             <div className="picture" key={dog.id}>

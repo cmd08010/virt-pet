@@ -21,6 +21,9 @@ function App() {
   const [petImage, setPetImage] = useState('')
   const [pet, setPet] = useState([])
 
+  //add chat bot with chat with dog
+
+
   useEffect(() => {
 
     axios.get('/api/pets')
@@ -56,6 +59,9 @@ function App() {
                 About
                 </Link>
             </nav>
+            <div>
+            </div>
+
           </div>
 
           <Switch>
