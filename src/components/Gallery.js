@@ -15,42 +15,46 @@ const Gallery = ({ pet, setPet }) => {
         return response.data
       })
       .then(results => console.log(results, "useeffect in app"))
-    // .then((results) => {
-    //   setPets(results[0])
-    //   setUsers(results[1])
-    // })
+
   }, [params])
+
   if (pets) {
     return (
-      <div className="gallery">
-        {pets.map(dog => {
-          return (
-            <div className="gallery-picture">
+      <div>
+        <h2>
 
-              <Link to="/play" onClick={() => setPet(dog.id)}>
-                <img src={dog.image} alt="Avatar" className="image" ></img>
-                <div className="middle">
-                  <div className="text">
-                    <h2>
-                      {dog.name}
+          View all our awesome pets! If you want you can also add to our gallery.
+</h2>
+        <div className="gallery">
+          {pets.map(dog => {
+            return (
+              <div className="gallery-picture">
 
-                    </h2>
+                <Link to="/play" onClick={() => setPet(dog.id)}>
+                  <img src={dog.image} alt="Avatar" className="image" ></img>
+                  <div className="middle">
+                    <div className="text">
+                      <h2>
+                        {dog.name}
+
+                      </h2>
 
                Click on this cutie to play!
             </div>
-                </div>
-              </Link>
-            </div >
+                  </div>
+                </Link>
+              </div >
 
-          );
-        })
-        }
-      </div >
+            );
+          })
+          }
+        </div >
+      </div>
     )
   } else {
     return (
-      <div>
-        See all the pets
+      <div className="gallery">
+        Try refreshing!
       </div>
     )
   }
