@@ -14,18 +14,15 @@ const sync = async () => {
   (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR NOT NULL,
-    hunger_level INT DEFAULT '3',
-    tired_level INT DEFAULT '2',
-    love_level INT DEFAULT '3',
     image VARCHAR DEFAULT 'https://i.imgur.com/Y0q6OiD.jpg?1',
     date_create TIMESTAMP default CURRENT_TIMESTAMP
   );
 
-  INSERT INTO pet("name", hunger_level, tired_level,  love_level, image) VALUES ('Woodley', '3','10','5', 'https://i.imgur.com/Y0q6OiD.jpg?1');
+  INSERT INTO pet("name", image) VALUES ('Woodley', 'https://i.imgur.com/Y0q6OiD.jpg?1');
 
 
 
-  INSERT INTO pet("name", hunger_level, tired_level,  love_level, image) VALUES ('Bridges', '5','5','3', 'https://i.imgur.com/EzMJmh4.jpg?1');
+  INSERT INTO pet("name", image) VALUES ('Bridges', 'https://i.imgur.com/EzMJmh4.jpg?1');
 
 
   `
@@ -46,46 +43,6 @@ const getPetById = async (id) => {
   return response.rows
 }
 
-
-const setLoveLevel = async id => {
-  const SQL = `
-  UPDATE pet SET love_level = love_level + 1 where id = $1
-  returning *`
-  const response = await client.query(SQL, [id])
-  return response.rows[0]
-}
-
-const increaseTiredLevel = async id => {
-  const SQL = ` UPDATE pet SET tired_level = tired_level + 1 where id = $1
-  returning *`
-  const response = await client.query(SQL, [id])
-
-  return response.rows[0]
-}
-const decreaseTiredLevel = async id => {
-  const SQL = ` UPDATE pet SET tired_level = tired_level - 1 where id = $1
-  returning *`
-  const response = await client.query(SQL, [id])
-
-  return response.rows[0]
-}
-
-const decreaseHungerLevel = async id => {
-  const SQL = ` UPDATE pet SET hunger_level = hunger_level - 1 where id = $1
-  returning *
-  `
-  const response = await client.query(SQL, [id])
-
-  return response.rows[0]
-}
-const increaseHungerLevel = async id => {
-  const SQL = ` UPDATE pet SET hunger_level = hunger_level + 1 where id = $1
-  returning *
-  `
-  const response = await client.query(SQL, [id])
-  return response.rows[0]
-}
-
 const setName = async (id, name) => {
   const SQL = `UPDATE pet SET name = $2 WHERE id= $1 returning *`
   const response = await client.query(SQL, [id, name])
@@ -94,30 +51,18 @@ const setName = async (id, name) => {
 }
 
 const setPet = async (name, image) => {
+  console.log(name, image)
   const SQL = `INSERT INTO pet("name", image) VALUES ($1, $2)`
-  const response = await client.query(SQL, (name, image))
-  return response.rows[0]
+  const response = await client.query(SQL, [name, image])
+  console.log(response.rows)
+  return response.rows
 }
 
-const decreaseLoveLevel = async id => {
-  const SQL = ` UPDATE pet SET love_level = love_level - 1 where id = $1
-  returning *
-  `
-  const response = await client.query(SQL, [id])
-
-  return response.rows[0]
-}
 
 module.exports = {
   sync,
   getPet,
   getPetById,
-  decreaseHungerLevel,
-  increaseHungerLevel,
-  setLoveLevel,
-  decreaseLoveLevel,
-  increaseTiredLevel,
-  decreaseTiredLevel,
   setName,
   setPet
 }

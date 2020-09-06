@@ -22,11 +22,10 @@ const Gallery = ({ pet, setPet }) => {
   }, [params])
   if (pets) {
     return (
-      <div className="pictures">
-        In Gallery
+      <div className="gallery">
         {pets.map(dog => {
           return (
-            <div className="picture">
+            <div className="gallery-picture">
 
               <Link to="/play" onClick={() => setPet(dog.id)}>
                 <img src={dog.image} alt="Avatar" className="image" ></img>
@@ -37,7 +36,7 @@ const Gallery = ({ pet, setPet }) => {
 
                     </h2>
 
-               Click on this cutie to play with her!
+               Click on this cutie to play!
             </div>
                 </div>
               </Link>

@@ -12,10 +12,11 @@ const Play = ({ pet, setPet }) => {
   console.log(pet)
 
   const [playPet, setPlayPet] = useState([])
-  const [play, setPlay] = useState([])
-  const [tired, setTired] = useState([])
-  const [hunger, setHunger] = useState([])
-  const [hearts, setHearts] = useState([])
+  const [play, setPlay] = useState(20)
+  const [tired, setTired] = useState(20)
+  const [hunger, setHunger] = useState(20)
+  const [hearts, setHearts] = useState(20)
+  const [animate, setAnimate] = useState("")
 
 
   useEffect(() => {
@@ -28,17 +29,31 @@ const Play = ({ pet, setPet }) => {
     //click button and add play level
     // once hit max change picture to tired picture
     // popup once hit max level
+    setPlay(play + 20)
 
   }
 
-  const feed = () => {
-    //get dog hunger level
-    //click button and add play level
-    // once hit max change picture to tired picture
-    // popup once hit max level
+  const hungerLevel = () => {
+
+    if (hunger >= 240) {
+      setAnimate("")
+
+    } else {
+      setHunger(hunger + 20)
+      console.log(hunger)
+
+    }
   }
-  const nap = () => { }
-  const love = () => { }
+  const tiredLevel = () => {
+    setTired(tired + 20)
+  }
+  const heartsLevel = () => {
+    if (hearts >= 240) {
+      setAnimate("heart")
+      setTimeout(() => setAnimate(""), 3000)
+    }
+    setHearts(hearts + 20)
+  }
 
 
   if (!playPet) {
@@ -54,60 +69,58 @@ const Play = ({ pet, setPet }) => {
     return (
       //include pet description and name
 
-      <div classNameName="play">
+      <div className="play">
+        <div className="animations">
+
+          <div id={animate}>
+          </div>
+          <div id={animate}>
+          </div>
+          <div id={animate}>
+          </div>
+        </div>
         <h1>
           {playPet.name}
         </h1>
-        <div classNameName="pictures">
+        <div className="pictures">
+          <div className="picture">
+            <img src={playPet.image} alt="avatar" className="image-nohover" ></img>
 
-          <img src={playPet.image}></img>
+          </div>
         </div>
-  This is the play component
-        <div classNameName="buttons">
-          <meter id="meter_love">
-          </meter>
-          <span></span>
+        <div className="progress-bars">
+          <div className="progress">
+            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={play} aria-valuemin="0" aria-valuemax="100" style={{ width: play }}>
+            </div>
+          </div>
+          <button classNameName="myButton" onClick={() => playTime()}> Play</button>
+        </div>
 
-          <button classNameName="myButton" onClick={() => playTime()}>Play</button>
+        <div className="progress-bars">
           <div className="progress">
-            <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{ width: 1000 }} >
-              <span className="sr-only">60% Complete</span>
+            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={hunger} aria-valuemin="0" aria-valuemax="100" style={{ width: hunger }}>
             </div>
           </div>
-          <span></span>
-          <button classNameName="myButton" onClick={() => feed()}> Feed</button>
-          <meter id="meter_love">
-          </meter>
-          <span></span>
-          <button classNameName="myButton" onClick={() => nap()}> Nap</button>
-          <meter id="meter_love">
-          </meter>
-          <span></span>
-          <button classNameName="myButton" onClick={() => love()}> Give love</button>
-
+          <button classNameName="myButton" onClick={() => hungerLevel()}> Feed</button>
+        </div>
+        <div className="progress-bars">
           <div className="progress">
-            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style={{ width: 40 }}>
-              <span className="sr-only">40% Complete (success)</span>
+            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={tired} aria-valuemin="0" aria-valuemax="100" style={{ width: tired }}>
             </div>
           </div>
+          <button classNameName="myButton" onClick={() => tiredLevel()}> Nap</button>
+        </div>
+        <div className="progress-bars">
           <div className="progress">
-            <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{ width: 20 }}>
-              <span className="sr-only">20% Complete</span>
+            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={hearts} aria-valuemin="0" aria-valuemax="100" style={{ width: hearts }}>
             </div>
           </div>
-          <div className="progress">
-            <div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{ width: 60 }}>
-              <span className="sr-only">60% Complete (warning)</span>
-            </div>
-          </div>
-          <div className="progress">
-            <div className="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: 100 }}>
-              <span className="sr-only">80% Complete (danger)</span>
-            </div>
-          </div>
-
+          <button classNameName="myButton" onClick={() => heartsLevel()}> Love</button>
         </div>
       </div >
+
+
+
     )
   }
 

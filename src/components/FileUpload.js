@@ -19,32 +19,39 @@ const FileUpload = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log(file, "the file on submit", petName)
-    formData.append('file', file);
-    formData.append('name', petName)
-    try {
-      const res = await axios.post('/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log(res)
-      const { url, original_filename } = res.data.result;
+    if (!file && !petName) {
+      alert('Please choose a file and input a name')
+    } else if (!file) {
 
-      setUploadedFile({ url, original_filename });
-      setMessage('File Uploaded');
-      setFileName('Choose file');
-      const newPet = { name: petName, image: "hi" };
-      axios.post('/api/pets', newPet).then((res) => {
-        console.log(res);
-      });
+      alert('Please choose a file to upload')
+    }
+    else if (!petName) {
+      alert('Please input a name for your new pet!')
+    } else {
+      const formData = new FormData();
+      formData.append('file', file, 'name', petName)
+      try {
+        const res = await axios.post('/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
-    } catch (err) {
-      if (err.response.status === 500) {
-        setMessage('There was a problem with the server');
-      } else {
-        setMessage(err.response.data.msg);
+        const { url, original_filename } = res.data.result;
+        setUploadedFile({ url, original_filename });
+        setMessage('File Uploaded');
+        setFileName('Choose file');
+        const newPet = { name: petName, image: url };
+        axios.post('/api/pets', newPet).then((res) => {
+          console.log(res);
+        });
+
+      } catch (err) {
+        if (err.response.status === 500) {
+          setMessage('There was a problem with the server');
+        } else {
+          setMessage(err.response.data.msg);
+        }
       }
     }
   }

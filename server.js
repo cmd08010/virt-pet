@@ -1,5 +1,7 @@
 const express = require("express")
 const app = express()
+const dotenv = require('dotenv')
+dotenv.config()
 const router = express.Router()
 const path = require("path")
 const morgan = require("morgan")
@@ -28,10 +30,9 @@ app.use(myLogger);
 
 cloudinary.config({
   cloud_name: 'dos6dfcoldun',
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
 });
-
 
 app.get("/", (req, res, next) => {
 
@@ -58,17 +59,18 @@ app.post('/upload', (req, res) => {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
   const file = req.files.file;
-  console.log(file, "file in server", file.tempFilePath)
-  cloudinary.uploader.upload(file.tempFilePath, { public_id: "sample" }, function (err, result) {
-    console.log(result, err)
+  cloudinary.uploader.upload(file.tempFilePath, {
+    transformation: [
+      { width: 0.25, radius: "max", crop: "scale" }
+    ]
+  }, function (err, result) {
     res.send({ success: true, result });
   });
 });
 
 
-app.post("/api/pets", (req, res, next) => {
-  console.log(req.body, "pet stuff for new pet server")
-  db.setPet(req.body[0], req.body[1]).then(response => res.send(response))
+app.post('/api/pets', (req, res, next) => {
+  db.setPet(req.body.name, req.body.image).then(response => res.send(response))
 })
 
 
