@@ -22,7 +22,6 @@ const FileUpload = () => {
     if (!file && !petName) {
       alert('Please choose a file and input a name')
     } else if (!file) {
-
       alert('Please choose a file to upload')
     }
     else if (!petName) {
@@ -36,7 +35,6 @@ const FileUpload = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
-
         const { url, original_filename } = res.data.result;
         setUploadedFile({ url, original_filename });
         setMessage('File Uploaded');
@@ -45,7 +43,6 @@ const FileUpload = () => {
         axios.post('/api/pets', newPet).then((res) => {
           console.log(res);
         });
-
       } catch (err) {
         if (err.response.status === 500) {
           setMessage('There was a problem with the server');
@@ -55,15 +52,13 @@ const FileUpload = () => {
       }
     }
   }
-
-
   return (
-    <div className="home">
+    <Fragment>
       {uploadedFile ? (
         <div id="uploadedFile">
-          <img src={uploadedFile.url} className="userProfileImage" alt="avatar" />
+          <img src={uploadedFile.url} alt="avatar" />
         </div>
-      ) : null
+      ) : <div id="uploadedFile"></div>
       }
       {
         message ? (
@@ -99,8 +94,9 @@ const FileUpload = () => {
           />
         </div>
       </form>
-    </div >
 
+
+    </Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios"
 
@@ -20,11 +20,10 @@ const Gallery = ({ pet, setPet }) => {
 
   if (pets) {
     return (
-      <div>
+      <Fragment>
         <h2>
-
           View all our awesome pets! If you want you can also add to our gallery!
-</h2>
+        </h2>
         <div className="gallery">
           {pets.map(dog => {
             return (
@@ -35,20 +34,18 @@ const Gallery = ({ pet, setPet }) => {
                     <div className="text">
                       <h2>
                         {dog.name}
-
                       </h2>
-
-               Click on this cutie to play!
-            </div>
+                    Click on this cutie to play!
+                     </div>
                   </div>
                 </Link>
               </div >
-
             );
           })
           }
         </div >
-      </div>
+
+      </Fragment >
     )
   } else {
     return (
