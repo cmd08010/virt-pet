@@ -54,5 +54,6 @@
   },
   "engines": {
     "node": "14.4.0"
-  }
+  },
+  "heroku-postbuild": "cd client && npm install && npm run build"
 }
