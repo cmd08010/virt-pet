@@ -13,7 +13,7 @@ const cloudinary = require('cloudinary').v2
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms"))
 app.use(bodyParser.json())
 
-app.use(express.static("./public"))
+app.use(express.static(path.join(__dirname, 'build')))
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -33,7 +33,7 @@ cloudinary.config({
 });
 
 app.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "/index.html"))
+  res.sendFile(path.join(__dirname, 'build', "/index.html"))
 })
 
 app.get("/api/pets", (req, res, next) => {
@@ -113,7 +113,7 @@ app.put("/api/pets/:action", (req, res, next) => {
 
 
 app.get('/*', (req, res, next) =>
-  res.sendFile(path.join(__dirname, '/index.html'))
+  res.sendFile(path.join(__dirname, 'build', '/index.html'))
 );
 
 app.use((err, req, res, next) => {
