@@ -59,7 +59,7 @@ const FileUpload = () => {
 
   return (
     <div className="home">
-      {!uploadedFile ? (
+      {uploadedFile ? (
         <div id="uploadedFile">
           <img src={uploadedFile.url} className="userProfileImage" alt="avatar" />
         </div>

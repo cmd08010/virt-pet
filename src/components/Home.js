@@ -24,7 +24,7 @@ const Home = ({ pet, setPet, pets }) => {
   return (
     <div className="home">
 
-      <h2>Welcome to your virtual pet! Have fun playing with, feeding, giving love, and letting your new pet name!
+      <h2>Welcome to your virtual pet! Have fun playing with, feeding, giving love, and letting your new pet nap!
         Select a pet to get started!</h2>
 
       <div className="pictures">

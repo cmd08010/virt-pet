@@ -10,6 +10,7 @@ import axios from "axios"
 import { createStore } from "redux"
 import { create } from 'lodash';
 
+
 function App() {
 
   const store = createStore(() => { })
@@ -44,23 +45,22 @@ function App() {
 
       <Router>
         <div>
-          <div id="nav-bar">
-            <nav className="nav-bar-links">
-              <Link className="link" to="/">
-                Home
+          <nav className="nav-bar-links">
+            <Link className="link" to="/">
+              Home
               </Link>
-              <Link className="link" to="/add">
-                Add a pet!
+            <Link className="link" to="/add">
+              Add a pet!
                 </Link>
-              <Link className="link" to="/gallery">
-                Choose a new pet!
+            <Link className="link" to="/gallery">
+              Choose a new pet!
                 </Link>
-              <Link className="link" to="/about">
-                About
+            <Link className="link" to="/about">
+              About
                 </Link>
-            </nav>
-            <div>
-            </div>
+          </nav>
+          <div>
+
 
           </div>
 

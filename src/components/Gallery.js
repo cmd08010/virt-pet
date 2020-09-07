@@ -25,7 +25,7 @@ const Gallery = ({ pet, setPet }) => {
 
           View all our awesome pets! If you want you can also add to our gallery!
 </h2>
-        <div className="pictures">
+        <div className="gallery">
           {pets.map(dog => {
             return (
               <div className="picture">
