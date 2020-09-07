@@ -13,7 +13,7 @@ const cloudinary = require('cloudinary').v2
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms"))
 app.use(bodyParser.json())
 
-app.use(express.static("public"))
+app.use(express.static("./public"))
 app.use(
   fileUpload({
     useTempFiles: true,
