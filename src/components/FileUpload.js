@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const FileUpload = () => {
   const [file, setFile] = useState('');
-  const [fileName, setFileName] = useState('Choose File');
+  const [fileName, setFileName] = useState('');
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState('');
   const [petName, setPetName] = useState('')
@@ -56,50 +56,51 @@ const FileUpload = () => {
     }
   }
 
+
   return (
-    <Fragment>
-      {uploadedFile ? (
+    <div className="home">
+      {!uploadedFile ? (
         <div id="uploadedFile">
           <img src={uploadedFile.url} className="userProfileImage" alt="avatar" />
         </div>
-      ) : null}
-      {message ? (
-        <div
-          className="alert alert-secondary alert-dismissible fade show"
-          role="alert"
-        >
-          {message}
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
+      ) : null
+      }
+      {
+        message ? (
+          <div
+            className="alert alert-secondary alert-dismissible fade show"
+            role="alert"
           >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      ) : null}
+            {message}
+            <button className="myButton">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+        ) : null
+      }
       <form onSubmit={onSubmit} className="fileUpload">
+        Name:
+          <input type="text" onChange={addName} className=""></input>
         <div className="custom-file">
-          <input type="text" onChange={addName}></input>
           <input
             type="file"
-            className="custom-file-input"
+            className="custom-file"
             id="customFile"
             onChange={onChange}
           />
           <label className="custom-file-label" htmlFor="customFile">
             {fileName}
           </label>
+          <input
+            type="submit"
+            value="Upload"
+            className="button"
+            id="submitImageButton"
+          />
         </div>
-        <input
-          type="submit"
-          value="Upload"
-          className="btn button mt-1"
-          id="submitImageButton"
-        />
       </form>
-    </Fragment>
+    </div >
+
   );
 };
 

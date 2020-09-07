@@ -29,7 +29,6 @@ const Gallery = ({ pet, setPet }) => {
           {pets.map(dog => {
             return (
               <div className="picture">
-
                 <Link to="/play" onClick={() => setPet(dog.id)}>
                   <img src={dog.image} alt="Avatar" className="image"></img>
                   <div className="middle">

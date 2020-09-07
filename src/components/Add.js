@@ -11,15 +11,12 @@ const Add = () => {
   return (
     <div className="App">
 
+      <h1>Add a new pet to play with!</h1>
 
-      <b>Add a Dog Picture</b>
-
-      <h5>
-
+      <h3>
         <FileUpload />
 
-
-      </h5>
+      </h3>
 
     </div>
   );

@@ -42,7 +42,7 @@ const Home = ({ pet, setPet, pets }) => {
                       {dog.name}
 
                     </h2>
-               Click on this cutie to play with her!
+               Click on this cutie to play!
             </div>
                 </div>
               </Link>
