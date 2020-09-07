@@ -6,7 +6,7 @@ const About = () => {
 
   return (
     <div className="App">
-      This is the about component
+      This is the about component!
     </div>
   );
 }
