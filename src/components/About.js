@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
-import { Animated } from "react-animated-css";
+
 
 const About = () => {
 
@@ -13,12 +13,6 @@ const About = () => {
       {/*  animate__backInUp
       animate__backOutUp
       */}
-
-      <Animated animationIn="bounceInUp" animationOut="fadeOut" isVisible={false}>
-        <div>
-          hello world ;)
-    </div>
-      </Animated>
     </div>
   );
 }
