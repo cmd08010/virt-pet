@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-server": "cross-env NODE_ENV=development nodemon server.js --watch server/",
-    "start": "react-scripts start"
+    "start": "concurrently \"npm run start-server\" \"react-scripts start\" --kill-others"
   },
   "eslintConfig": {
     "extends": "react-app"
