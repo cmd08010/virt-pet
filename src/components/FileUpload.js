@@ -5,8 +5,9 @@ const FileUpload = () => {
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('');
   const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [petName, setPetName] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -27,6 +28,7 @@ const FileUpload = () => {
     else if (!petName) {
       alert('Please input a name for your new pet!')
     } else {
+      setLoading(true)
       const formData = new FormData();
       formData.append('file', file, 'name', petName)
       try {
@@ -35,13 +37,16 @@ const FileUpload = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
+
         const { url, original_filename } = res.data.result;
         setUploadedFile({ url, original_filename });
+
         setMessage('File Uploaded');
         setFileName('Choose file');
         const newPet = { name: petName, image: url };
         axios.post('/api/pets', newPet).then((res) => {
-          console.log(res);
+          setFileName("Upload Successful!");
+          setLoading(false)
         });
       } catch (err) {
         if (err.response.status === 500) {
@@ -54,24 +59,28 @@ const FileUpload = () => {
   }
   return (
     <Fragment>
-      {uploadedFile ? (
+      {Object.keys(uploadedFile) != 0 &&
         <div id="uploadedFile">
-          <img src={uploadedFile.url} alt="avatar" />
+          <img src={uploadedFile.url} alt="avatar" class="loading" />
         </div>
-      ) : <div id="uploadedFile"></div>
       }
-      {
-        message ? (
-          <div
-            className="alert alert-secondary alert-dismissible fade show"
-            role="alert"
-          >
-            {message}
-            <button className="myButton">
-              <span aria-hidden="true"></span>
-            </button>
-          </div>
-        ) : null
+      {loading ? <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="avatar" class="loading" /> : null
+
+      }
+      {message ? (
+        <div
+          className="alert alert-secondary alert-dismissible fade show"
+          role="alert"
+        >
+          {message}
+          <button type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      ) : null
       }
       <form onSubmit={onSubmit} className="fileUpload">
         Name:

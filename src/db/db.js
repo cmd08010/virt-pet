@@ -8,9 +8,10 @@ const client = new Client(
 client.connect()
 
 const sync = async () => {
-  const SQL = `    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-  DROP TABLE IF EXISTS pet;
-  CREATE TABLE pet
+  if (process.env.NODE_ENV == 'production') {
+    const SQL = `    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+  CREATE TABLE IF NOT EXISTS pet
   (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     "name" VARCHAR NOT NULL,
@@ -26,7 +27,29 @@ const sync = async () => {
 
 
   `
-  await client.query(SQL)
+    await client.query(SQL)
+  } else {
+    const SQL = `    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+  DROP TABLE IF EXISTS pet;
+  CREATE TABLE IF NOT EXISTS pet
+  (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    "name" VARCHAR NOT NULL,
+    image VARCHAR DEFAULT 'https://i.imgur.com/Y0q6OiD.jpg?1',
+    date_create TIMESTAMP default CURRENT_TIMESTAMP
+  );
+
+  INSERT INTO pet("name", image) VALUES ('Woodley', 'https://i.imgur.com/Y0q6OiD.jpg?1');
+
+
+
+  INSERT INTO pet("name", image) VALUES ('Bridges', 'https://i.imgur.com/EzMJmh4.jpg?1');
+
+
+  `
+    await client.query(SQL)
+
+  }
 }
 
 const getPet = async () => {
@@ -51,7 +74,6 @@ const setName = async (id, name) => {
 }
 
 const setPet = async (name, image) => {
-  console.log(name, image)
   const SQL = `INSERT INTO pet("name", image) VALUES ($1, $2)`
   const response = await client.query(SQL, [name, image])
   console.log(response.rows)

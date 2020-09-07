@@ -6,6 +6,10 @@ body, html{
  justify-items: center;
 }
 
+img.loading {
+  background: transparent url(https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif) no-repeat scroll center center;
+}
+
 
 /*test*/
 .my-element {
