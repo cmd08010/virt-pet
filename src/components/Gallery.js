@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from "axios"
 
 
@@ -25,13 +25,13 @@ const Gallery = ({ pet, setPet }) => {
 
           View all our awesome pets! If you want you can also add to our gallery.
 </h2>
-        <div className="gallery">
+        <div className="pictures">
           {pets.map(dog => {
             return (
-              <div className="gallery-picture">
+              <div className="picture">
 
                 <Link to="/play" onClick={() => setPet(dog.id)}>
-                  <img src={dog.image} alt="Avatar" className="image" ></img>
+                  <img src={dog.image} alt="Avatar" className="image"></img>
                   <div className="middle">
                     <div className="text">
                       <h2>
