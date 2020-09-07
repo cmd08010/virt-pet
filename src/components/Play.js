@@ -83,7 +83,7 @@ const Play = ({ pet, setPet }) => {
           {playPet.name}
         </h1>
         <div className="pictures">
-          <div className="picture">
+          <div className="picture-play">
             <img src={playPet.image} alt="avatar" className="image-nohover" ></img>
 
           </div>

@@ -47,6 +47,13 @@ height: 100vh;
 
 }
 
+.picture-play{
+  display: flex;
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 30px;
+}
 /*animations*/
 
 .animations{
@@ -206,7 +213,8 @@ height: 100vh;
 
 .picture{
   display: flex;
-  position: relative;
+  align-items: center;
+
   width: auto;
   height: auto;
   margin: 30px;
