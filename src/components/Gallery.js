@@ -23,7 +23,7 @@ const Gallery = ({ pet, setPet }) => {
       <div>
         <h2>
 
-          View all our awesome pets! If you want you can also add to our gallery.
+          View all our awesome pets! If you want you can also add to our gallery!
 </h2>
         <div className="pictures">
           {pets.map(dog => {
