@@ -32,9 +32,9 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-app.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "/build"))
-})
+// app.get("/", (req, res, next) => {
+//   res.sendFile(path.join(__dirname + "/build"))
+// })
 
 app.get("/api/pets", (req, res, next) => {
   db.getPet().then(response => {
@@ -113,7 +113,7 @@ app.put("/api/pets/:action", (req, res, next) => {
 
 
 app.get('/*', (req, res, next) =>
-  res.sendFile(path.join(__dirname, '/build'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 app.use((err, req, res, next) => {

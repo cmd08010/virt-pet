@@ -20,9 +20,9 @@ const Play = ({ pet, setPet }) => {
 
 
   useEffect(() => {
-    axios.get(`/api/pets/`)
+    axios.get(`/api/pets/${pet}`)
       .then(response => setPlayPet(response.data[0]))
-  }, [])
+  }, [pet])
 
   const playTime = () => {
     //get dog playlevel
