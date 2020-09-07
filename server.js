@@ -33,7 +33,7 @@ cloudinary.config({
 });
 
 app.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "/build/index.html"))
+  res.sendFile(path.join(__dirname + "/public/index.html"))
 })
 
 app.get("/api/pets", (req, res, next) => {
