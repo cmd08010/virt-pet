@@ -20,7 +20,7 @@ const Play = ({ pet, setPet }) => {
 
 
   useEffect(() => {
-    axios.get(`/api/pets/${pet}`)
+    axios.get(`/api/pets/`)
       .then(response => setPlayPet(response.data[0]))
   }, [])
 
