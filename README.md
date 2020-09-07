@@ -1,3 +1,3 @@
 Check out the deployed version here:
 
-virtual-petapp.herokuapp.com
+<a href="virtual-petapp.herokuapp.com">virtual-petapp.herokuapp.com</a>
